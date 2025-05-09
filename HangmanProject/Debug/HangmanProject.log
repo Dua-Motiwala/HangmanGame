@@ -1,8 +1,9 @@
 ﻿  HangmanGame.cpp
-  main.cpp
+  HangmanVisualizer.cpp
   Player.cpp
   PlayerInputWordSource.cpp
-C:\Users\javer\OneDrive\Documents\Dua\HangmanProject\HangmanProject\PlayerInputWordSource.cpp(20,32): warning C4018: '>=': signed/unsigned mismatch
-C:\Users\javer\OneDrive\Documents\Dua\HangmanProject\HangmanProject\PlayerInputWordSource.cpp(20,64): warning C4018: '<=': signed/unsigned mismatch
+C:\Users\javer\OneDrive\Documents\Dua\HangmanProject\HangmanProject\PlayerInputWordSource.cpp(36,32): warning C4018: '>=': signed/unsigned mismatch
+C:\Users\javer\OneDrive\Documents\Dua\HangmanProject\HangmanProject\PlayerInputWordSource.cpp(36,64): warning C4018: '<=': signed/unsigned mismatch
+  main.cpp
   Generating Code...
   HangmanProject.vcxproj -> C:\Users\javer\OneDrive\Documents\Dua\HangmanProject\Debug\HangmanProject.exe

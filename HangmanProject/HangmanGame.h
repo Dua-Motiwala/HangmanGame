@@ -9,11 +9,13 @@
 #include <set>
 #include <string>
 
+using namespace std;
+
 class HangmanGame : public Game {
 private:
     WordWithHint wordData;
-    std::string guessedWord;
-    std::set<char> guessedLetters;
+    string guessedWord;
+    set<char> guessedLetters;
     int maxTries = 6;
     int currentTries;
     Player& guesser;

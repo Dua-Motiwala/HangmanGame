@@ -1,6 +1,8 @@
 #ifndef WORDSOURCE_H
 #define WORDSOURCE_H
 
+using namespace std;
+
 #include <string>
 #include "Difficulty.h"
 #include "WordWithHint.h"

@@ -1,6 +1,8 @@
 #ifndef PLAYERINPUTWORDSOURCE_H
 #define PLAYERINPUTWORDSOURCE_H
 
+using namespace std;
+
 #include "WordSource.h"
 #include "Player.h"
 

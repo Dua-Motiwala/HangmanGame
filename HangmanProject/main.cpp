@@ -6,12 +6,39 @@
 #include <iostream>
 #include <memory>
 
+using namespace std;
+
+auto isValidName = [](const string& name) {
+    if (name.empty()) return false;
+
+    for (char c : name) {
+        if (!isalpha(c)) return false;
+    }
+
+    return true;
+    };
+
 int main() {
-    std::string name1, name2;
-    std::cout << "Enter Player 1 name: ";
-    std::getline(std::cin, name1);
-    std::cout << "Enter Player 2 name: ";
-    std::getline(std::cin, name2);
+    string name1, name2;
+
+    while (true) {
+        cout << "Enter Player 1 name (letters only): ";
+        getline(cin, name1);
+
+        if (isValidName(name1)) break;
+
+        cout << "Invalid name. Use letters only.\n";
+    }
+
+    // Input Player 2 name
+    while (true) {
+        cout << "Enter Player 2 name (letters only): ";
+        getline(cin, name2);
+
+        if (isValidName(name2)) break;
+
+        cout << "Invalid name. Use letters only.\n";
+    }
 
     Player player1(name1), player2(name2);
 
@@ -20,50 +47,71 @@ int main() {
         Player* wordSetter;
 
         while (true) {
-            std::cout << "Who will guess the word? (1 or 2): ";
+            cout << "Who will guess the word? (1 or 2): ";
             int choice;
-            std::cin >> choice;
+            cin >> choice;
+
             if (choice == 1) {
                 guesser = &player1;
                 wordSetter = &player2;
                 break;
-            } else if (choice == 2) {
+            }
+            else if (choice == 2) {
                 guesser = &player2;
                 wordSetter = &player1;
                 break;
-            } else {
-                std::cout << "Invalid choice. Try again.\n";
+            }
+            else {
+                cout << "Invalid choice. Try again.\n";
             }
         }
 
-        std::cout << "\nChoose difficulty:\n1. Easy\n2. Medium\n3. Hard\nSelect (1/2/3): ";
+        cout << "\nChoose difficulty:\n1. Easy\n2. Medium\n3. Hard\nSelect (1/2/3): ";
         int levelInput;
-        std::cin >> levelInput;
+        cin >> levelInput;
+
         Difficulty difficulty = Difficulty::Medium;
+
         switch (levelInput) {
-            case 1: difficulty = Difficulty::Easy; break;
-            case 2: difficulty = Difficulty::Medium; break;
-            case 3: difficulty = Difficulty::Hard; break;
-            default: std::cout << "Invalid. Defaulting to Medium.\n";
+        case 1: {
+            difficulty = Difficulty::Easy;
+            break;
+        }
+        case 2: {
+            difficulty = Difficulty::Medium;
+            break;
+        }
+        case 3: {
+            difficulty = Difficulty::Hard;
+            break;
+        }
+        default: {
+            cout << "Invalid. Defaulting to Medium.\n";
+        }
         }
 
-        std::unique_ptr<WordSource> wordSource = std::make_unique<PlayerInputWordSource>(*wordSetter);
+        unique_ptr<WordSource> wordSource = make_unique<PlayerInputWordSource>(*wordSetter);
         WordWithHint wordData = wordSource->getWord(difficulty);
-        std::unique_ptr<Game> game = std::make_unique<HangmanGame>(*guesser, wordData, difficulty);
+        unique_ptr<Game> game = make_unique<HangmanGame>(*guesser, wordData, difficulty);
+
         game->startGame();
 
-        std::cout << "\nCurrent Scores:\n";
-        std::cout << player1.getName() << ": " << player1.getScore() << "\n";
-        std::cout << player2.getName() << ": " << player2.getScore() << "\n";
+        cout << "\nCurrent Scores:\n";
+        cout << player1.getName() << ": " << player1.getScore() << "\n";
+        cout << player2.getName() << ": " << player2.getScore() << "\n";
 
-        std::cout << "\nDo you want to play again? (y/n): ";
+        cout << "\nDo you want to play again? (y/n): ";
         char again;
-        std::cin >> again;
-        if (std::tolower(again) != 'y') break;
+        cin >> again;
+
+        if (tolower(again) != 'y') {
+            break;
+        }
     }
 
-    std::cout << "\nThanks for playing!\nFinal Scores:\n";
-    std::cout << player1.getName() << ": " << player1.getScore() << "\n";
-    std::cout << player2.getName() << ": " << player2.getScore() << "\n";
+    cout << "\nThanks for playing!\nFinal Scores:\n";
+    cout << player1.getName() << ": " << player1.getScore() << "\n";
+    cout << player2.getName() << ": " << player2.getScore() << "\n";
+
     return 0;
 }

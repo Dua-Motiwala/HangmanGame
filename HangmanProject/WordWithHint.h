@@ -1,13 +1,13 @@
 #ifndef WORDWITHHINT_H
 #define WORDWITHHINT_H
 
-#include <string>
-
 using namespace std;
+
+#include <string>
 
 struct WordWithHint {
     string word;
     string hint;
 };
 
-#endif // WORDWITHHINT_H
+#endif

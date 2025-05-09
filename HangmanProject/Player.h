@@ -3,15 +3,17 @@
 
 #include <string>
 
+using namespace std;
+
 class Player {
 private:
-    std::string name;
+    string name;
     int score;
 
 public:
-    Player(const std::string& name);
+    Player(const string& name);
     void incrementScore();
-    std::string getName() const;
+    string getName() const;
     int getScore() const;
 };
 
